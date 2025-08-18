@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     // ✅ Skip ESLint during builds
     ignoreDuringBuilds: true,
   },
+  reactStrictMode: true,
 };
 
 export default nextConfig;
