@@ -9,6 +9,7 @@ interface LayoutProps {
 export default function DashboardLayout({ children }: LayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
+      <div className=" w-full h-48 overflow-hidden bg-[url(/banner.jpg)] bg-cover" />
       <Navbar className="top-2 rounded-full" />
       {/* <div
         className="w-full h-[200px] bg-secondary text-red-500"
