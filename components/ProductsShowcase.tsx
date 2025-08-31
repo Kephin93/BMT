@@ -35,7 +35,7 @@ export function ProductShowcase({
         return (
           <a
             key={key}
-            href={item.link ?? "#"}
+            href={item.link ?? undefined}
             className="relative group block p-2 h-full w-full focus:outline-none"
             onMouseEnter={() => setHoveredIndex(idx)}
             onMouseLeave={() => setHoveredIndex(null)}
