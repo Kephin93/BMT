@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, DM_Sans } from "next/font/google";
 import "./globals.css";
 import app from "@/firebase/clientApp";
 import DashboardLayout from "@/components/Common/dashboard-layout";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const dmSans = DM_Sans({
   subsets: ["latin"],
 });
 
@@ -27,9 +21,7 @@ export default function RootLayout({
   // console.log("Firebase App:", app);
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${dmSans.className} antialiased`}>
         <DashboardLayout>{children}</DashboardLayout>
       </body>
     </html>
