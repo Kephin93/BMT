@@ -9,7 +9,7 @@ const currencyMap: Record<CountryCode, { locale: string; currency: string }> = {
 
 export function formatPrice(
   value: number | string,
-  country: CountryCode
+  country: CountryCode,
 ): string {
   const number = Number(value);
   if (isNaN(number)) return String(value);

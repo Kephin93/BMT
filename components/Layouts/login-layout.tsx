@@ -15,7 +15,7 @@ export default function LoginLayout({ children }: LayoutProps) {
           "duration-300 bg-background ",
         )}
       >
-        <div className="flex-grow h-screen w-full bg-[url(/banner.jpg)] bg-cover bg-center">
+        <div className="flex-grow h-screen w-full bg-[url(/BG.png)] bg-cover bg-center">
           <div className="h-screen px-4 w-full bg-white/60 flex items-center justify-center">
             {children}
           </div>
