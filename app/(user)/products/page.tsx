@@ -20,7 +20,7 @@ export default function Home() {
   console.log("data -=>", data);
 
   return (
-    <Col align="start" className="w-full h-[100vh] px-[10%]" gap="lg">
+    <Col align="start" className="w-full px-4 pb-10 sm:px-6 lg:px-[10%]" gap="lg">
       <ProductShowcase items={data} showAdd={true} />
     </Col>
   );

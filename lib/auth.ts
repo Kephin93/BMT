@@ -1,7 +1,9 @@
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
+import "server-only";
+import { serverConfig } from "@/config/server";
 
-const AUTH_SECRET = process.env.AUTH_SECRET!;
+const AUTH_SECRET = serverConfig.authSecret!;
 if (!AUTH_SECRET) throw new Error("Missing AUTH_SECRET env var");
 
 export async function hashPassword(password: string) {

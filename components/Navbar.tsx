@@ -9,6 +9,8 @@ export default function Navbar({ className }: { className?: string }) {
       menus={[
         { label: "Home", href: "/home" },
         { label: "Products", href: "/products" },
+        { label: "Cart", href: "/cart" },
+        { label: "FAQ", href: "/faq" },
         { label: "Contact Us", href: "/contact" },
       ]}
     />

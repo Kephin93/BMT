@@ -43,10 +43,10 @@ export const AnimatedTestimonials = ({
   };
 
   return (
-    <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
-      <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2">
+    <div className="mx-auto w-full min-w-0 max-w-sm overflow-x-clip px-4 py-10 font-sans antialiased md:max-w-4xl md:px-8 md:py-20 lg:px-12">
+      <div className="relative grid grid-cols-[minmax(0,1fr)] gap-8 md:grid-cols-2 md:gap-12 lg:gap-20">
         <div>
-          <div className="relative h-80 w-full">
+          <div className="relative h-64 w-full sm:h-80">
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
@@ -92,7 +92,7 @@ export const AnimatedTestimonials = ({
             </AnimatePresence>
           </div>
         </div>
-        <div className="flex flex-col justify-between py-4">
+        <div className="flex min-w-0 flex-col justify-between break-words py-4">
           <motion.div
             key={active}
             initial={{
@@ -146,14 +146,18 @@ export const AnimatedTestimonials = ({
           </motion.div>
           <div className="flex gap-4 pt-12 md:pt-0">
             <button
+              type="button"
+              aria-label="Previous testimonial"
               onClick={handlePrev}
-              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-background "
+              className="group/button flex size-11 items-center justify-center rounded-full bg-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               <IconArrowLeft className="h-5 w-5 text-foreground transition-transform duration-300 group-hover/button:rotate-12 cursor-pointer " />
             </button>
             <button
+              type="button"
+              aria-label="Next testimonial"
               onClick={handleNext}
-              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-background "
+              className="group/button flex size-11 items-center justify-center rounded-full bg-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               <IconArrowRight className="h-5 w-5 text-foreground transition-transform duration-300 group-hover/button:-rotate-12 cursor-pointer " />
             </button>

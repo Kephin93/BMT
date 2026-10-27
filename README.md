@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+Configuration and deployment secrets are managed in [`config/`](config/README.md). Copy `config/.env.example` to `config/.env.local` for a new checkout. Existing local values have already been moved there. Before deployment, follow that guide to set hosting environment variables and review the remaining access-control issues.
+
 First, run the development server:
 
 ```bash

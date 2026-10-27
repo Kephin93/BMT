@@ -37,7 +37,7 @@ export default function CustomNavbar({ menus, className }: AdminNavbarProps) {
   return (
     <div
       className={cn(
-        "fixed inset-x-0 top-10 z-50 mx-auto text-sm max-w-2xl rounded-full border-2 border-primary bg-background/80 backdrop-blur-sm",
+        "fixed inset-x-2 top-10 z-50 mx-auto text-sm max-w-2xl rounded-3xl border-2 border-primary bg-background/80 backdrop-blur-sm sm:rounded-full",
         className,
       )}
     >
@@ -66,7 +66,7 @@ export default function CustomNavbar({ menus, className }: AdminNavbarProps) {
             <Link
               key={menu.label}
               href={menu.href}
-              className="text-sm text-black dark:text-primary"
+              className="inline-flex min-h-11 shrink-0 items-center rounded-sm px-2 text-sm text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary"
             >
               {menu.label}
             </Link>

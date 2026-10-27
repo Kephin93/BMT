@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { adminDb } from "@/lib/firebase/admin";
 import { verifyPassword, signSession, hashPassword } from "@/lib/auth";
+import { serverConfig } from "@/config/server";
 
 export async function POST(req: Request) {
   try {
@@ -52,7 +53,7 @@ export async function POST(req: Request) {
       iat: Date.now(),
     });
 
-    const cookieName = process.env.AUTH_COOKIE_NAME || "app_session";
+    const cookieName = serverConfig.authCookieName;
 
     const res = NextResponse.json({
       user: { id: doc.id, username: user.username },

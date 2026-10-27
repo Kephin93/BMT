@@ -18,14 +18,14 @@ export default function Home() {
   });
 
   return (
-    <Col align="start" className="w-full h-full px-[10%] pb-[10%]" gap="lg">
-      <div className="flex justify-center w-full py-32 font-bold text-8xl text-primary">
+    <Col align="start" className="mx-auto h-full w-full min-w-0 px-4 pb-12 sm:px-6 lg:px-12 lg:pb-24" gap="lg">
+      <h1 className="w-full py-8 text-center text-2xl font-bold leading-tight text-primary sm:py-12 sm:text-3xl lg:text-4xl">
         Our Products
-      </div>
-      <ProductShowcase items={data} showAdd={true} />
-      <div className="flex justify-center w-full py-32 font-bold text-8xl text-primary">
+      </h1>
+      <ProductShowcase items={data} showAdd={true} className="mx-auto lg:w-[70vw] lg:max-w-full" />
+      <h2 className="w-full py-8 text-center text-2xl font-bold leading-tight text-primary sm:py-12 sm:text-3xl lg:text-4xl">
         Our Testimonies
-      </div>
+      </h2>
       <AnimatedTestimonials testimonials={testimonials} />
     </Col>
   );

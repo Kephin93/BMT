@@ -61,7 +61,7 @@ export default function ContactPage() {
       </div>
 
       <footer className="border-t border-primary/10 bg-muted px-6 py-8">
-        <nav aria-label="Contact page footer" className="mx-auto flex max-w-3xl flex-wrap justify-center gap-x-16 gap-y-4 text-sm">
+        <nav aria-label="Contact page footer" className="mx-auto flex max-w-3xl flex-wrap justify-center gap-x-8 gap-y-2 text-sm sm:gap-x-16 [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center">
           <Link href="/home" className="rounded-sm hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">Home</Link>
           <Link href="/products" className="rounded-sm hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">Products</Link>
           <Link href="/contact" aria-current="page" className="rounded-sm hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">Contact</Link>

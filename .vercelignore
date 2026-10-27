@@ -1,0 +1,7 @@
+# Local secrets must be supplied through Vercel environment settings.
+.env*
+**/.env*
+config/credentials/**
+certificates/**
+**/*.pem
+**/*.key

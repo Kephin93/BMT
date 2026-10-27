@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ZodError } from "zod";
@@ -67,15 +68,15 @@ export default function ProductOrderForm({ product, today }: { product: CartProd
     <div className="mt-7 border-t border-primary/10 pt-6">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6 text-left text-sm lg:w-1/2">
-          <fieldset disabled={!ready || form.formState.isSubmitting} className="space-y-4">
+          <fieldset disabled={!ready || form.formState.isSubmitting} className="min-w-0 space-y-4">
             <legend className="sr-only">Choose your product options</legend>
             <FormField control={form.control} name="size" render={({ field }) => (
               <FormItem className="grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-x-3 gap-y-1.5">
                 <FormLabel className="font-normal leading-5 text-primary">Size</FormLabel>
                 <Select onValueChange={field.onChange} value={field.value}>
-                  <FormControl><SelectTrigger size="sm" className="w-24 max-w-full rounded-sm border-primary/20 bg-white px-2 shadow-none"><SelectValue>{field.value} cm</SelectValue></SelectTrigger></FormControl>
+                  <FormControl><SelectTrigger size="sm" className="w-24 max-w-full rounded-sm border-primary/20 bg-white px-2 text-base shadow-none data-[size=sm]:h-11 md:text-sm md:data-[size=sm]:h-8"><SelectValue>{field.value} cm</SelectValue></SelectTrigger></FormControl>
                   <SelectContent className="border-primary/20 bg-background text-primary">
-                    {PRODUCT_SIZES_CM.map((size) => <SelectItem key={size} value={size}>{size} cm</SelectItem>)}
+                    {PRODUCT_SIZES_CM.map((size) => <SelectItem key={size} value={size} className="min-h-11 md:min-h-0">{size} cm</SelectItem>)}
                   </SelectContent>
                 </Select>
                 <FormMessage className="col-start-2 text-red-700" />
@@ -91,13 +92,13 @@ export default function ProductOrderForm({ product, today }: { product: CartProd
                 }}>
                   <PopoverTrigger asChild>
                     <FormControl>
-                      <Button type="button" variant="outline" className="h-8 w-full justify-between gap-1 rounded-sm border-primary/20 bg-white px-2 text-xs font-normal shadow-none">
+                      <Button type="button" variant="outline" className="h-11 w-full justify-between gap-1 rounded-sm border-primary/20 bg-white px-2 text-sm font-normal shadow-none md:h-8 md:text-xs">
                         {format(parseISO(field.value), "dd MMM yyyy")}
                         <CalendarIcon aria-hidden="true" className="size-3.5" />
                       </Button>
                     </FormControl>
                   </PopoverTrigger>
-                  <PopoverContent align="start" className="w-auto border-primary/20 bg-background p-0 text-primary">
+                  <PopoverContent align="start" collisionPadding={8} className="w-auto max-w-[calc(100vw-1rem)] border-primary/20 bg-background p-0 text-primary">
                     <Calendar
                       mode="single"
                       required
@@ -136,7 +137,7 @@ export default function ProductOrderForm({ product, today }: { product: CartProd
                     required
                     value={Number.isNaN(field.value) ? "" : field.value}
                     onChange={(event) => field.onChange(event.target.valueAsNumber)}
-                    className="h-8 w-24 max-w-full rounded-sm border-primary/20 bg-white px-2 text-sm shadow-none"
+                    className="h-11 w-24 max-w-full rounded-sm border-primary/20 bg-white px-2 text-base shadow-none md:h-8 md:text-sm"
                   />
                 </FormControl>
                 <FormMessage className="col-start-2 text-red-700" />
@@ -161,19 +162,19 @@ export default function ProductOrderForm({ product, today }: { product: CartProd
           <Button type="submit" disabled={!ready || form.formState.isSubmitting} className="h-12 w-full rounded-lg text-base font-semibold">
             {form.formState.isSubmitting ? "Adding…" : "Add to cart"}
           </Button>
-          {success && <p role="status" className="text-sm text-primary">{success}</p>}
+          {success && <p role="status" className="text-sm text-primary">{success} <Link href="/cart" className="inline-flex min-h-11 items-center rounded-sm underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-primary">View cart</Link></p>}
         </form>
       </Form>
       {ready && (
         <details className="mt-6 border-t border-primary/10 pt-4 text-sm text-primary">
-          <summary className="cursor-pointer rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
+          <summary className="min-h-11 cursor-pointer rounded-sm py-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
             Saved cart ({items.reduce((total, item) => total + item.quantity, 0)})
           </summary>
           {items.length ? (
             <ul className="mt-4 space-y-4">
               {items.map((item) => (
                 <li key={JSON.stringify([item.productId, item.size, item.pickupDate])}>
-                  <p>{item.title}</p>
+                  <p className="break-words">{item.title}</p>
                   <p className="mt-1 text-xs leading-5 text-primary/80">
                     {item.size} cm · {format(parseISO(item.pickupDate), "dd MMM yyyy")} · Quantity {item.quantity}
                   </p>
