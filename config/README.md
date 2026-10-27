@@ -14,9 +14,9 @@ The existing root `.env` was moved to `config/.env.local` without changing its c
 
 ## Public and private values
 
-`NEXT_PUBLIC_FIREBASE_*` values identify the Firebase web app and are intentionally included in browser JavaScript. They are not authorization credentials. Protect client access with deployed Firestore/Storage Security Rules and appropriate API-key restrictions; consider App Check. Never place a private key, session secret, LINE token, or LINE channel secret in a variable named `NEXT_PUBLIC_*`.
+`FIREBASE_API_KEY`, `FIREBASE_AUTH_DOMAIN`, `FIREBASE_PROJECT_ID`, `FIREBASE_STORAGE_BUCKET`, `FIREBASE_MESSAGING_SENDER_ID`, `FIREBASE_APP_ID`, and `FIREBASE_MEASUREMENT_ID` identify the Firebase web app and are intentionally included in browser JavaScript. They are not authorization credentials. Protect client access with deployed Firestore/Storage Security Rules and appropriate API-key restrictions; consider App Check. These web settings and `USE_FIREBASE_EMULATOR` are explicitly exposed through the allowlist in `next.config.ts`. Removing the prefix does not make them private. Never add a private key, session secret, LINE token, or LINE channel secret to that allowlist.
 
-`FIREBASE_PRIVATE_KEY`, `FIREBASE_CLIENT_EMAIL`, and `AUTH_SECRET` belong on the server. Keep the private key quoted on one line, with literal `\n` between PEM lines. Use a long, randomly generated `AUTH_SECRET`, for example from `node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"`.
+`FIREBASE_PRIVATE_KEY`, `FIREBASE_CLIENT_EMAIL`, and `AUTH_SECRET` belong on the server. `FIREBASE_PROJECT_ID` is shared by the browser and Firebase Admin SDK. Keep the private key quoted on one line, with literal `\n` between PEM lines. Use a long, randomly generated `AUTH_SECRET`, for example from `node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"`.
 
 Do not import `server.ts` into a Client Component, export its contents from an API, return them as component props, or log them. Keep public and server imports separate; do not add a shared barrel export. Never put secrets in `next.config.ts`'s `env` option or inside `public/`.
 
