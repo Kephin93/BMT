@@ -4,6 +4,7 @@ export type BaseProductType = {
   subTitle: String;
   recommended: Boolean;
   img: String;
+  images?: string[];
   price: number;
   createdAt: Date;
 };
@@ -13,5 +14,6 @@ export type InputProductType = {
   subTitle: String;
   recommended: Boolean;
   img: String;
+  images?: string[];
   price: number;
 };

@@ -25,7 +25,7 @@ export const MenuItem = ({
   return (
     <div
       onMouseEnter={() => setActive(active === item ? null : item)}
-      className="relative "
+      className="relative"
     >
       <motion.p
         transition={{ duration: 0.3 }}
@@ -40,7 +40,7 @@ export const MenuItem = ({
           transition={transition}
         >
           {active === item && (
-            <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
+            <div className="absolute left-1/2 transform -translate-x-1/2 pt-4">
               <motion.div
                 transition={transition}
                 layoutId="active" // layoutId ensures smooth animation
@@ -108,7 +108,7 @@ export const ProductItem = ({
 
 export const HoveredLink = ({ children, ...rest }: any) => {
   return (
-    <a {...rest} className="text-foreground ">
+    <a {...rest} className="text-foreground py-1">
       {children}
     </a>
   );

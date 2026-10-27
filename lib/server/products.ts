@@ -1,5 +1,15 @@
 import { adminDb } from "@/lib/firebase/admin";
 import { FieldValue } from "firebase-admin/firestore";
+import type { Product } from "@/interfaces";
+
+export async function getProduct(id: string) {
+  if (!id || id.includes("/") || id === "." || id === "..") return null;
+
+  const snap = await adminDb.collection("product").doc(id).get();
+  if (!snap.exists) return null;
+
+  return { ...(snap.data() as Product), id: snap.id };
+}
 
 export async function listProducts() {
   const snap = await adminDb
