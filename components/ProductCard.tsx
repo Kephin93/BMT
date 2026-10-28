@@ -9,7 +9,7 @@ export default function ProductCard({
   className,
   index = 0,
 }: {
-  img: string;
+  img: string[];
   title: string;
   className?: string; // NEW
   index?: number;
@@ -33,7 +33,7 @@ export default function ProductCard({
         {/* Image: fixed aspect so all cards start with same height */}
         <div className="relative w-full aspect-[4/3] overflow-hidden bg-muted">
           <img
-            src={img}
+            src={img?.find(Boolean) || "/default.webp"}
             alt={title}
             className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 ease-out motion-safe:group-hover/card:scale-[1.03] motion-safe:group-focus-within/card:scale-[1.03] motion-safe:group-focus-visible:scale-[1.03]"
             loading="lazy"

@@ -35,8 +35,9 @@ export function middleware(request: NextRequest) {
   // avoid accidental loops
   if (pathname === "/login") return NextResponse.next();
 
-  const lowerPath = /^\/products\//i.test(pathname)
-    ? pathname.replace(/^\/products/i, "/products")
+  const productPath = pathname.match(/^(\/(?:admin\/)?products\/)([^/]+)(.*)$/i);
+  const lowerPath = productPath
+    ? `${productPath[1].toLowerCase()}${productPath[2]}${productPath[3].toLowerCase()}`
     : pathname.toLowerCase();
   if (pathname !== lowerPath) {
     const redirectURL = url.clone();

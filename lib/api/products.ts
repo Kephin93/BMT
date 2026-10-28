@@ -9,6 +9,11 @@ export async function fetchProducts() {
 }
 
 export async function createProduct(payload: Omit<InputProductType, "id">) {
-  const res = await api.post<{ id: string }>("/products", payload);
-  return res.data;
+  const res = await api.post<{ data: { id: string } }>("/products", payload);
+  return res.data.data;
+}
+
+export async function updateProduct(id: string, payload: InputProductType) {
+  const res = await api.patch<{ data: { id: string } }>(`/products/${encodeURIComponent(id)}`, payload);
+  return res.data.data;
 }

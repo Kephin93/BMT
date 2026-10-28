@@ -38,7 +38,7 @@ const request = {
 function database(events = []) {
   const saved = new Map();
   let fail = false;
-  const products = new Map([["cake", { title: "Homemade cake", img: "/cake.jpg", price: 120 }]]);
+  const products = new Map([["cake", { title: "Homemade cake", img: ["/cake.jpg", "/cake-detail.jpg"], price: 120 }]]);
   const db = {
     collection: name => ({ doc: id => ({ path: `${name}/${id}`, id }) }),
     async runTransaction(callback) {
@@ -187,12 +187,14 @@ test("cart shows customer fields above three chronological order groups", () => 
   const React = require("react");
   const { renderToStaticMarkup } = require("react-dom/server");
   const items = request.items.map(item => ({ ...item, title: "Homemade cake", img: "/cake.jpg", price: 120 }));
+  items[0].img = "";
   let stateIndex = 0;
   const Cart = load("components/Cart.tsx", {
     react: { ...React, useState: initial => React.useState(stateIndex++ === 0 ? true : initial) },
     "@/stores/cart": { useCartStore: selector => selector({ items, removeItem() {}, removeSubmittedItems() {} }) },
   }).default;
   const html = renderToStaticMarkup(React.createElement(Cart));
+  assert.match(html, /src="\/default.webp"/);
   assert.match(html, /name="customerName"/);
   assert.match(html, /name="lineId"/);
   assert.ok(html.indexOf('name="lineId"') < html.indexOf('id="date-2026-10-31"'));
@@ -248,7 +250,7 @@ test("cart removal and successful checkout preserve other selections and roll ba
   await useCartStore.persist.rehydrate();
   const { getProductOrderDefaults } = load("schemas/product-order.ts");
   const values = getProductOrderDefaults();
-  const product = { id: "cake", title: "Cake", img: "/cake.jpg", price: 120 };
+  const product = { id: "cake", title: "Cake", img: ["/cake.jpg"], price: 120 };
   useCartStore.getState().addItem(product, values);
   const requestId = useCartStore.getState().prepareCheckout("same submission");
   const service = database();

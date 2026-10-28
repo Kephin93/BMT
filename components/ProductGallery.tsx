@@ -3,25 +3,21 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function ProductGallery({
-  img,
-  images = [],
+  img = [],
   title,
 }: {
-  img: string;
-  images?: string[];
+  img: string[];
   title: string;
 }) {
-  const photos = [...new Set([img, ...images].filter(Boolean))];
+  const photos = [...new Set(img?.filter(Boolean) ?? [])];
 
   if (!photos.length) {
     return (
-      <div
-        role="img"
-        aria-label={`No photos available for ${title}`}
-        className="flex aspect-[3/2] items-center justify-center rounded-lg bg-muted text-sm text-primary/75"
-      >
-        Image unavailable
-      </div>
+      <img
+        src="/default.webp"
+        alt={title}
+        className="aspect-[3/2] w-full rounded-lg bg-muted object-contain"
+      />
     );
   }
 

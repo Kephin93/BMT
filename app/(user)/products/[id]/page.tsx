@@ -31,7 +31,6 @@ export default async function ProductPage({
         <ProductGallery
           key={product.id}
           img={product.img}
-          images={product.images}
           title={product.title}
         />
         <div className="min-w-0 md:pt-2">

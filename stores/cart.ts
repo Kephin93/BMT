@@ -67,7 +67,7 @@ export const useCartStore = create<CartState>()(
             throw new Error(`Maximum quantity is ${MAX_ORDER_QUANTITY} for the same product, size and pickup date.`);
           }
           const item = cartItemSchema.parse({
-            ...order, quantity, productId: product.id, title: product.title, img: product.img, price: product.price,
+            ...order, quantity, productId: product.id, title: product.title, img: product.img[0] ?? "", price: product.price,
           });
           saveItems(index >= 0 ? items.map((existing, i) => i === index ? item : existing) : [...items, item]);
         },

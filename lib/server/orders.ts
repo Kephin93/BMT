@@ -49,7 +49,9 @@ export async function registerOrders(input: unknown, today = getTaipeiDate()): P
       if (!snapshot.exists) throw new CheckoutError("A cake in your cart is no longer available. Remove it before submitting.");
       const product = snapshot.data()!;
       const verified = cartItemSchema.safeParse({
-        ...item, title: product.title, img: product.img, price: product.price,
+        ...item, title: product.title,
+        img: Array.isArray(product.img) ? product.img[0] ?? "" : undefined,
+        price: product.price,
       });
       if (!verified.success) throw new CheckoutError("A cake cannot be ordered right now. Please contact us through LINE.");
       return verified.data;

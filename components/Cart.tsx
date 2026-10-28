@@ -158,11 +158,9 @@ export default function Cart() {
                 <ul className="divide-y divide-primary/10 px-5 sm:px-7">
                   {dateItems.map(item => (
                     <li key={JSON.stringify([item.productId, item.size])} className="flex gap-3 py-5 sm:gap-5">
-                      {item.img && (
-                        <Link href={`/products/${encodeURIComponent(item.productId)}`} aria-label={`View ${item.title}`} className="size-16 shrink-0 self-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:size-20">
-                          <img src={item.img} alt="" className="h-full w-full rounded-lg bg-muted object-cover" />
-                        </Link>
-                      )}
+                      <Link href={`/products/${encodeURIComponent(item.productId)}`} aria-label={`View ${item.title}`} className="size-16 shrink-0 self-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:size-20">
+                        <img src={item.img || "/default.webp"} alt="" className="h-full w-full rounded-lg bg-muted object-cover" />
+                      </Link>
                       <div className="min-w-0 flex-1">
                         <Link href={`/products/${encodeURIComponent(item.productId)}`} className="inline-flex min-h-11 items-center break-words rounded-sm text-sm font-medium hover:underline focus-visible:outline-2 focus-visible:outline-primary">{item.title}</Link>
                         <p className="text-xs leading-6 text-primary/75">{item.size} cm · Quantity {item.quantity}</p>
